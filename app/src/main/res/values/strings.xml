@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Innovest</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (Min length 8)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_main">Home</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_logout">Logout</string>
+
+
+    <!--Nav bar strings-->
+    <string name="nav_home"> Home </string>
+    <string name="nav_category">Categories</string>
+    <string name="nav_company">Companies</string>
+    <string name="nav_bids">My Bids</string>
+    <string name="nav_account">My Account</string>
+    <string name="nav_share">Share</string>
+    <string name="nav_refer">Refer</string>
+    <string name="title_activity_category">Categories</string>
+
+    <!--User registraation-->
+    <string name="error_password_mismatch">The passwords do match</string>
+    <string name="notification_register_success">Your account has been successfully created. Login to continue.</string>
+    <string name="notification_register_failure">Failed to create account. Please try again later.</string>
+    <string name="action_sign_up">Register</string>
+    <string name="action_sign_up_prompt">Don\'t have an account? Sign up.</string>
+    <string name="hint_register_first_name">Enter first Name(required)</string>
+    <string name="hint_register_last_name">Enter Last Name (required)</string>
+    <string name="hint_register_email_address"> Enter email address</string>
+    <string name="hint_register_password">Enter desired password(required, Min length 8)</string>
+    <string name="hint_register_password_confirm">Repeat the same password above</string>
+
+
+    <!--campaign messages-->
+    <string name="error_zero_campaigns">No campaigns found</string>
+
+    <!--bid messages-->
+    <string name="error_zero_bids">You have no bids!</string>
+</resources>
+
+
