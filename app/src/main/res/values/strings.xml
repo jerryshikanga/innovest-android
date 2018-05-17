@@ -18,12 +18,13 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_logout">Logout</string>
+    <string name="action_update_account">Update Account</string>
 
 
     <!--Nav bar strings-->
     <string name="nav_home"> Home </string>
     <string name="nav_category">Categories</string>
-    <string name="nav_company">Companies</string>
+    <string name="nav_campaign">My Campaigns</string>
     <string name="nav_bids">My Bids</string>
     <string name="nav_account">My Account</string>
     <string name="nav_share">Share</string>
@@ -45,9 +46,107 @@
 
     <!--campaign messages-->
     <string name="error_zero_campaigns">No campaigns found</string>
+    <string name="error_campaign_invalid">The campaign is invalid</string>
 
     <!--bid messages-->
     <string name="error_zero_bids">You have no bids!</string>
+
+    <!--new campaign-->
+    <string name="hint_new_campaign_name">Enter name</string>
+    <string name="hint_new_campaign_description">Enter description</string>
+    <string name="hint_new_campaign_summary">Enter summary</string>
+    <string name="hint_new_campaign_amount">Enter amount</string>
+    <string name="hint_new_campaign_submit">Register campaign</string>
+    <string name="hint_new_campaign_category">Choose category</string>
+    <string name="hint_new_campaign_date_end">Choose date ending</string>
+
+    <string name="title_new_campaign">Add a new Campaign</string>
+    <string name="text_new_campaign_photo">Choose campaign photo</string>
+    <string name="action_new_campaign_photo">Select photo</string>
+
+    <string name="error_amount_invalid">Please enter an amount greater than zero</string>
+
+    <string name="message_campaign_registered_successfully">Your campaign was registered successfully</string>
+    <string name="message_failed_register_campaign">Failed to register the campaign.</string>
+
+    <!--edit campaign-->
+    <string name="action_update_campaign">Edit Campaign</string>
+    <string name="message_campaign_updated_successfully">Your campaign was updated successfully</string>
+    <string name="message_failed_updated_campaign">Failed to update the campaign.</string>
+
+    <!--home screen messages-->
+    <string name="about_company_text">Welcome to Innovest. We connect innovators an investors.
+    Open the navigation drawer to explore active campaigns. Click the snackbar to add yours.
+        Below are the latest statistics
+    </string>
+    <string name="text_active_users">Active Users</string>
+    <string name="text_active_campaigns">Active campaigns</string>
+    <string name="text_funds_raised">Funds raised</string>
+
+    <!--password reset-->
+    <string name="action_password_reset">Reset password</string>
+    <string name="text_password_reset_screen">Enter your email.
+        If it is a valid email in our records a password reset mail will be sent.</string>
+    <string name="hint_password_reset_email">Enter your email</string>
+    <string name="text_button_reset_password">Reset Password</string>
+    <string name="password_reset_successful">Password reset request successful. Check your email to continue.</string>
+    <string name="password_reset_unsuccessful">Failed to reset password. Try again later.</string>
+
+    <!--password change-->
+    <string name="action_change_password">Change Password</string>
+    <string name="hint_password_change_old_password">Enter old password</string>
+    <string name="hint_password_change_new_password">Enter new password</string>
+    <string name="hint_password_change_confirm_password">Repeat the password above</string>
+    <string name="text_password_change_submit_button">Reset Password</string>
+    <string name="message_password_change_successful">Password was changed successfully</string>
+    <string name="message_password_change_unsuccessful">Failed to change password</string>
+
+    <!--transaction-->
+    <string name="text_account_name">Account Name</string>
+    <string name="text_account_balance">Account balance</string>
+    <string name="text_account_withdraw">Withdraw</string>
+    <string name="text_account_deposit">Deposit</string>
+    <string name="text_account_phone">Phone Number</string>
+
+    <string name="hint_account_withdraw">Enter amount to withdraw</string>
+    <string name="hint_account_deposit">Enter amount to deposit</string>
+
+    <string name="message_deposit_request_successfull">Your deposit_request was sucessful</string>
+    <string name="message_deposit_request_unsuccessful">Yur deposit request was unsuccessful</string>
+
+    <string name="message_withdrawal_request_successful">Your withdrawal request was sucessful</string>
+    <string name="message_withdrawal_request_unsuccessful">Failed to process your withdrawal request</string>
+
+    <!--bid-->
+    <string name="text_bid_new_amount">Place Bid</string>
+    <string name="hint_new_bid_amount">Enter amount</string>
+    <string name="action_new_bid">Place Bid</string>
+
+    <string name="message_bid_placed_successfully">Bid placed successfully</string>
+    <string name="message_failed_to_place_bid">Failed to place bid</string>
+
+    <!--update account-->
+    <string name="text_update_account_first_name">First Name</string>
+    <string name="text_update_account_last_name">Last Name</string>
+    <string name="text_update_account_telephone">Telephone</string>
+    <string name="text_update_account_picture">Picture</string>
+    <string name="action_choose_profile_picture">Choose Profile Photo</string>
+
+    <string name="hint_account_update_first_name">Enter first Name</string>
+    <string name="hint_account_update_last_name">Enter last name</string>
+    <string name="hint_account_update_telephone">Enter telephone</string>
+    <string name="text_account_update_submit_button">Update Account</string>
+
+    <string name="title_intent_profile_pic_choose">Choose profile picture</string>
+
+    <string name="error_invalid_telephone">This telephone number is invalid</string>
+    <string name="message_account_updated_successfully">Account has been updated successfully</string>
+
+
+    <!--permissions-->
+    <string name="permission_request_read_ext_storage_">App needs permssion to read files from external storage for upload</string>
+    <string name="permission_result_success_read_ext_storage">Thanks for granting access to read files from ext storage</string>
+    <string name="permission_result_fail_read_ext_storage">Permission read ext storage wasnt granted. App may not work.</string>
 </resources>
 
 

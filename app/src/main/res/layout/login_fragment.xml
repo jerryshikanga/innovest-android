@@ -64,5 +64,23 @@
             android:text="@string/action_sign_in_short"
             android:textStyle="bold" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:textAppearanceSmall"
+            android:id="@+id/registerIntentButton"
+            android:text="@string/action_sign_up_prompt"
+            android:textStyle="italic"
+            android:layout_marginTop="16dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:textAppearanceSmall"
+            android:id="@+id/password_reset_fragment_button"
+            android:text="@string/action_password_reset"
+            android:textStyle="italic"
+            android:layout_marginTop="16dp"/>
+
     </LinearLayout>
 </LinearLayout>

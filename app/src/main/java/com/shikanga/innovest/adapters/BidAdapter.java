@@ -40,7 +40,6 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.BidViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull BidViewHolder holder, int position) {
         Bid bid = bids[position];
-        Log.i(Constants.CUSTOM_LOG_TAG, "Bidamount : "+bid.getAmount());
         holder.amountView.setText(String.valueOf(bid.getAmount()));
         holder.dateView.setText(bid.getDate().toString());
         holder.campaignView.setText(bid.getCampaign());

@@ -13,9 +13,9 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/nav_category" />
         <item
-            android:id="@+id/nav_company"
+            android:id="@+id/nav_auth_user_campaigns"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/nav_company" />
+            android:title="@string/nav_campaign" />
         <item
             android:id="@+id/nav_bid"
             android:icon="@drawable/ic_menu_manage"

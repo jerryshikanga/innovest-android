@@ -26,7 +26,7 @@ import com.shikanga.innovest.models.Category;
 import com.shikanga.innovest.services.CampaignListService;
 import com.shikanga.innovest.utils.Constants;
 
-public class CampaignListFragment extends Fragment {
+public class FragmentAuthUserCampaigns extends Fragment {
     private View view;
     private RecyclerView recyclerView;
     private Category category;
@@ -37,14 +37,7 @@ public class CampaignListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.campaign_list_fragment_layout, container, false);
         categoriesView = view.findViewById(R.id.category_name);
-        if (getArguments() != null){
-            String categoryString = getArguments().getString("category");
-            Gson gson = new Gson();
-            category = gson.fromJson(categoryString, Category.class);
-        }
-        else {
-            category = null;
-        }
+
 
         CampaignTask task = new CampaignTask(category);
         task.execute();
@@ -54,9 +47,7 @@ public class CampaignListFragment extends Fragment {
     public void updateView(final Campaign[] campaignList){
         recyclerView = (RecyclerView) view.findViewById(R.id.company_list_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        if (category != null){
-            categoriesView.setText(category.getName());
-        }
+        categoriesView.setText("My campaigns");
         if (campaignList != null){
             CampaignListAdapter adapter = new CampaignListAdapter(campaignList);
             recyclerView.setAdapter(adapter);
@@ -113,7 +104,7 @@ public class CampaignListFragment extends Fragment {
 
         @Override
         protected Campaign[] doInBackground(Void... params) {
-            Campaign[] campaignList = CampaignListService.getListCampaign(category);
+            Campaign[] campaignList = CampaignListService.getLoggedInUserCampaigns(getActivity());
             return campaignList;
         }
 

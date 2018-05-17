@@ -4,6 +4,8 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
@@ -12,6 +14,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,8 +29,11 @@ import com.google.gson.Gson;
 import com.shikanga.innovest.LoginActivity;
 import com.shikanga.innovest.R;
 import com.shikanga.innovest.activity.MainActivity;
+import com.shikanga.innovest.models.Account;
 import com.shikanga.innovest.models.User;
+import com.shikanga.innovest.services.AccountService;
 import com.shikanga.innovest.services.UserService;
+import com.shikanga.innovest.utils.Constants;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,10 +52,6 @@ public class LoginFragment extends Fragment {
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
-    /**
-     * Id to identity READ_CONTACTS permission request.
-     */
-    private static final int REQUEST_READ_CONTACTS = 0;
 
 
     @Nullable
@@ -84,6 +86,23 @@ public class LoginFragment extends Fragment {
                 return false;
             }
         });
+
+        Button registerIntentButton = (Button) view.findViewById(R.id.registerIntentButton);
+        registerIntentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new UserRegisterFragment());
+            }
+        });
+
+        Button passwordReset = (Button) view.findViewById(R.id.password_reset_fragment_button);
+        passwordReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new PasswordResetFragment());
+            }
+        });
+
         return view;
     }
 
@@ -187,6 +206,20 @@ public class LoginFragment extends Fragment {
         }
     }
 
+    public  void loadFragment(Fragment fragment){
+        Fragment currentFragment = getFragmentManager().findFragmentById(R.id.fragmentContainer);
+        if(currentFragment != null && fragment.getTag()!=null){
+            if (currentFragment.getTag().equals(fragment.getTag())){
+                return;
+            }
+        }
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
 
     /**
      * Represents an asynchronous login/registration task used to authenticate
@@ -213,9 +246,11 @@ public class LoginFragment extends Fragment {
                     if (serverResponse.has("token")){
                         Gson gson = new Gson();
                         String token = serverResponse.getString("token");
-                        String picture = serverResponse.getString("picture");
+                        UserService.setAuthTokenPref(getActivity(), token);
                         User user = gson.fromJson(serverResponse.getString("user"), User.class);
-                        UserService.loginUser(getActivity(), token, user, picture);
+                        UserService.setUserPref(getActivity(), user);
+                        Account account = AccountService.getAccount(user.getId(), getActivity());
+                        UserService.setAccountPref(getActivity(), account);
                         return true;
                     }
                 }

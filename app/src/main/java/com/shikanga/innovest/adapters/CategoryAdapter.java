@@ -3,11 +3,14 @@ package com.shikanga.innovest.adapters;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.shikanga.innovest.R;
 import com.shikanga.innovest.models.Category;
@@ -27,6 +30,8 @@ public class CategoryAdapter extends RecyclerView.Adapter <CategoryAdapter.ViewH
             nameTextView = view.findViewById(R.id.nameTextView);
             summaryTextView = view.findViewById(R.id.summaryTextView);
             pictureImageView = view.findViewById(R.id.logoImageView);
+
+
         }
     }
 
@@ -48,6 +53,8 @@ public class CategoryAdapter extends RecyclerView.Adapter <CategoryAdapter.ViewH
         holder.summaryTextView.setText(category.getSummary());
         holder.nameTextView.setText(category.getName());
     }
+
+
 
     @Override
     public int getItemCount() {

@@ -4,6 +4,8 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
@@ -42,7 +44,7 @@ import static android.Manifest.permission.READ_CONTACTS;
 
 public class UserRegisterFragment extends Fragment {
     View view;
-    private Button signUpButton, signInButton;
+    private Button registerButton, loginButton;
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView, mPasscordConfirmView, mFirstNameView, mLastNameView;
@@ -66,16 +68,22 @@ public class UserRegisterFragment extends Fragment {
         view = inflater.inflate(R.layout.user_register_fragment_layout, container, false);
         mRegisterFormView = view.findViewById(R.id.user_register_form);
         mProgressView = view.findViewById(R.id.register_progress);
-        signInButton = (Button) view.findViewById(R.id.email_sign_in_button);
-        signUpButton = (Button) view.findViewById(R.id.registerIntentButton);
+        registerButton = (Button) view.findViewById(R.id.email_sign_up_button);
+        loginButton = (Button) view.findViewById(R.id.login_button);
 
-        Button signInButton = view.findViewById(R.id.email_sign_in_button);
-        signInButton.setOnClickListener(new View.OnClickListener() {
+        registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptRegister();
             }
         });
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new LoginFragment());
+            }
+        });
+
 
         // Set up the register form.
         mEmailView = view.findViewById(R.id.email);
@@ -95,6 +103,20 @@ public class UserRegisterFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    public  void loadFragment(Fragment fragment){
+        Fragment currentFragment = getFragmentManager().findFragmentById(R.id.fragmentContainer);
+        if(currentFragment != null && fragment.getTag()!=null){
+            if (currentFragment.getTag().equals(fragment.getTag())){
+                return;
+            }
+        }
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     /**

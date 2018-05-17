@@ -34,22 +34,22 @@ public class LoginActivity extends AppCompatActivity {
             Intent i = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(i);
         }
-
-        Button registerIntentButton = (Button) findViewById(R.id.registerIntentButton);
-        registerIntentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadFragment(new UserRegisterFragment());
-            }
-        });
-
-        loadFragment(new LoginFragment());
+        else{
+            loadFragment(new LoginFragment());
+        }
     }
 
-    private void loadFragment(Fragment fragment){
+    public  void loadFragment(Fragment fragment){
+        Fragment currentFragment = getFragmentManager().findFragmentById(R.id.fragmentContainer);
+        if(currentFragment != null && fragment.getTag()!=null){
+            if (currentFragment.getTag().equals(fragment.getTag())){
+                return;
+            }
+        }
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 

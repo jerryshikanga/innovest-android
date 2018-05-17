@@ -28,7 +28,13 @@ import com.shikanga.innovest.LoginActivity;
 import com.shikanga.innovest.R;
 import com.shikanga.innovest.fragments.BidFragment;
 import com.shikanga.innovest.fragments.CampaignListFragment;
+import com.shikanga.innovest.fragments.CampaignNewFragment;
 import com.shikanga.innovest.fragments.CategoryFragment;
+import com.shikanga.innovest.fragments.FragmentAuthUserCampaigns;
+import com.shikanga.innovest.fragments.HomeFragment;
+import com.shikanga.innovest.fragments.PasswordChangeFragment;
+import com.shikanga.innovest.fragments.UpdateAccountFragment;
+import com.shikanga.innovest.models.Account;
 import com.shikanga.innovest.models.User;
 import com.shikanga.innovest.services.UserService;
 import com.shikanga.innovest.utils.Constants;
@@ -43,6 +49,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        loadFragment(new HomeFragment());
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -50,8 +59,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                loadFragment(new CampaignNewFragment());
             }
         });
 
@@ -74,7 +82,8 @@ public class MainActivity extends AppCompatActivity
         userEmailTextView.setText(loggedInUser.getEmail());
         ImageView profileImageView = (ImageView) headerView.findViewById(R.id.imageView);
 
-        Picasso.get().load(UserService.getLoggedInPicture(this)).into(profileImageView);
+        Account loggedInAccount = UserService.getLoggedInAccount(getApplicationContext());
+        Picasso.get().load(loggedInAccount.getPicture()).into(profileImageView);
     }
 
     @Override
@@ -108,6 +117,12 @@ public class MainActivity extends AppCompatActivity
             startActivity(i);
             return true;
         }
+        else if (id == R.id.action_change_password){
+            loadFragment(new PasswordChangeFragment());
+        }
+        else  if (id == R.id.action_update_account){
+            loadFragment(new UpdateAccountFragment());
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -119,11 +134,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-
+            loadFragment(new HomeFragment());
         } else if (id == R.id.nav_category) {
             loadFragment(new CategoryFragment());
-        } else if (id == R.id.nav_company) {
-            loadFragment(new CampaignListFragment());
+        } else if (id == R.id.nav_auth_user_campaigns) {
+            loadFragment(new FragmentAuthUserCampaigns());
         } else if (id == R.id.nav_bid) {
             loadFragment(new BidFragment());
         } else if (id == R.id.nav_share) {
@@ -138,9 +153,16 @@ public class MainActivity extends AppCompatActivity
     }
 
     public  void loadFragment(Fragment fragment){
+        Fragment currentFragment = getFragmentManager().findFragmentById(R.id.fragmentContainer);
+        if(currentFragment != null && fragment.getTag()!=null){
+            if (currentFragment.getTag().equals(fragment.getTag())){
+                return;
+            }
+        }
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 }
